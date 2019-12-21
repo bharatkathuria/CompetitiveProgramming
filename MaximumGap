@@ -1,0 +1,55 @@
+
+//Maximum Gap in a array of two consecutive no's.....
+//  O(n) time approach
+
+
+class Solution {
+    
+    class Bucket{
+        boolean used=false;
+        int low=Integer.MAX_VALUE;
+        int high=Integer.MIN_VALUE;
+    }
+    
+    
+    public int maximumGap(int[] nums) {
+        
+    int n =nums.length;
+        if(n<2){
+            return 0;
+        }
+        
+        int maxEl=nums[0];
+        int minEl=nums[0];
+        for(int i=1;i<n;i++){
+            maxEl = Math.max(maxEl,nums[i]);            
+            minEl = Math.min(minEl,nums[i]);            
+        }
+    
+        int bucketSize = Math.max(1,(int)(maxEl-minEl)/(int)(n-1));
+        int bucketNum = (maxEl-minEl)/bucketSize+1;
+        
+        Bucket[] bucket = new Bucket[bucketNum];
+        for(int i=0;i<bucketNum;i++){
+            bucket[i]= new Bucket();
+        }
+        
+        for(int num:nums){
+            int index=(num-minEl)/bucketSize;
+            bucket[index].used = true;
+            bucket[index].low = Math.min(num,bucket[index].low);
+            bucket[index].high = Math.max(num,bucket[index].high);
+        }
+        
+        int prevBucket= minEl,maxGap = 0;
+        
+        for(Bucket b : bucket){
+            if(!b.used)
+                continue;
+            maxGap = Math.max(maxGap,b.low-prevBucket);
+            prevBucket =  b.high;
+        }
+        
+        return maxGap;
+    }
+}
