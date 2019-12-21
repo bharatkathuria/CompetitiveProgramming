@@ -1,0 +1,59 @@
+//find repeated no by N/3 times in array
+//using two pointer aproach answer............
+public class Solution {
+    // DO NOT MODIFY THE LIST
+    public int repeatedNumber(final List<Integer> arr) {
+        
+        int n = arr.size();
+        int c1=0;
+        int c2=0;
+        int a=Integer.MIN_VALUE;
+        int b=Integer.MIN_VALUE;
+        
+        for(int i=0;i<n;i++){
+            int x = arr.get(i);
+            if(x==a){
+                c1++;
+            }
+            else if(x==b){
+                c2++;
+            }
+            else if(c1==0){
+                a=x;
+                c1++;
+            }
+            else if(c2==0){
+                b=x;
+                c2++;
+            }
+            else{
+                c1--;
+                c2--;
+                
+            }
+        }
+        c1=0;
+        c2=0;
+        for(int i=0;i<n;i++){
+            int x = arr.get(i);
+            if(x==a){
+                c1++;
+            }
+            if(x==b){
+                c2++;
+            }
+        }
+        
+        if(c1>n/3){
+            return a;
+        }
+        else if(c2>n/3){
+            return b;
+        }
+        else{
+            return -1;
+        }
+        
+    }
+}
+
