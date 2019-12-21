@@ -1,0 +1,59 @@
+//next no should be greater if string character is 'I' or smaller if 'D'
+
+//using deque aproach
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findPerm(final String A, int B) {
+        
+        ArrayList<Integer> a = new ArrayList<>();
+        
+        Deque<Integer> q = new LinkedList<>();
+        
+        for(int i=1;i<=B;i++){
+            q.add(i);    
+        }
+        
+        for(int i=0;i<A.length();i++)
+        {
+            if(A.charAt(i)=='D'){
+             a.add(q.removeLast());   
+            }
+            else{
+             a.add(q.removeFirst());   
+            }         
+        }
+        a.add(q.removeFirst());
+        return a;
+        
+    }
+}
+
+//using two pointer approach
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findPerm(final String A, int B) {
+        
+        ArrayList<Integer> a = new ArrayList<>();
+        
+        int small = 1;
+        int large=B;
+
+        for(int i=0;i<A.length();i++)
+        {
+            if(A.charAt(i)=='D'){
+             a.add(large);
+             large--;
+            }
+            else{
+             a.add(small);
+             small++;
+            }         
+        }
+        a.add(small);
+        return a;
+        
+    }
+}
+
