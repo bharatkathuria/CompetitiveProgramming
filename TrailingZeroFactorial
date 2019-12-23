@@ -1,0 +1,15 @@
+//efficient approach
+
+public class Solution {
+    public int trailingZeroes(int A) {
+        int zeroCount=0;
+        int i=5;
+        while((A/i)>=1){
+            zeroCount+=A/i;
+            i=i*5;
+        }
+        return zeroCount;
+        
+        
+    }
+}
