@@ -1,0 +1,25 @@
+//sum of hamming distance between all pairs
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int hammingDistance(final List<Integer> A) {
+        int total=0;
+        int n=A.size();
+        for(int i=0;i<31;i++){
+            int count=0;
+        for(int j=0;j<A.size();j++){
+            
+             if((A.get(j)&(1<<i))==0){
+                 count++;
+            }
+             }
+            int zcount=n-count;
+            total+=(2L*count*zcount)%1000000007;
+            total=total%1000000007;
+        }
+        
+        // total=(total*2)%1000000007;
+        return total;
+        
+    }
+}
