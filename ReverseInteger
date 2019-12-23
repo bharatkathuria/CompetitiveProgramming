@@ -1,0 +1,29 @@
+//with overflow check
+public class Solution {
+    public int reverse(int A) {
+        
+    boolean sign=false;
+    if(A<0){
+        sign=true;
+        A=A*-1;
+    }
+    long rev=0;
+    
+    while(A>0){
+        rev=rev*10;
+        rev+=A%10;
+        A=A/10;
+    if(rev>Integer.MAX_VALUE){
+        return 0;
+    }    
+    }
+    if(sign){
+        rev=rev*-1;
+    }
+    if(rev>Integer.MAX_VALUE){
+        return 0;
+    }    
+
+    return (int)rev;
+    }
+}
