@@ -1,5 +1,5 @@
-//without extra space
-
+//without extra space can can use 2nd approach by reversing integer an checking if they are equal
+	
 
 public class Solution {
     public int isPalindrome(int A) {
