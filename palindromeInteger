@@ -1,0 +1,29 @@
+//without extra space
+
+
+public class Solution {
+    public int isPalindrome(int A) {
+        if(A<0){
+            return 0;
+        }
+        
+        int base=1;
+        int x=A;
+        while(x/10>0){
+            x=x/10;
+            base=base*10;
+        }
+        
+        while(A>0 && A/base==A%10){
+            A=A%base;
+            A=A/10;
+            base=base/100;
+            
+        }
+        if(A<=0){
+                return 1;
+        }
+        return 0;
+        
+    }
+}
