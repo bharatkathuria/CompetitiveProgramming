@@ -1,0 +1,19 @@
+//703->"AAA"
+
+public class Solution {
+    public String convertToTitle(int A) {
+        
+        StringBuilder sb = new StringBuilder();
+        
+        while(A>0){
+            char c = (char)((A%26)+64);
+            if(A%26==0){
+                c='Z';
+                A=A-1;
+            }
+            sb.insert(0,c);
+            A=A/26;
+        }
+        return sb.toString();
+    }
+}
