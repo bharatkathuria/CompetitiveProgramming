@@ -1,0 +1,68 @@
+public class Solution {
+    
+    public  ArrayList<Integer> noToArray(int n){
+        
+        ArrayList<Integer> a = new ArrayList<>();
+        
+        while(n!=0){
+            a.add(0,n%10);
+            n=n/10;
+        }
+        if(a.size()==0){
+            a.add(0);
+        }
+        return a;
+    }
+    
+    public int solve(ArrayList<Integer> A, int B, int C) {
+        
+        int count=0;
+        ArrayList<Integer> digit = noToArray(C);
+        int d=A.size();
+        if(B>digit.size()||d==0){
+            return 0;
+        }
+        else if(B<digit.size()){
+            if(A.get(0)==0 && B!=1){
+                return (int)((d-1)*Math.pow(d,B-1));   
+            }
+            else{
+                return (int)(Math.pow(d,B));
+            }
+        }
+        else{
+            int dp[] = new int[B+1];
+            int lower[] = new int[11];
+            
+            for(int i=0;i<d;i++){
+                lower[A.get(i)+1]=1;
+            }
+            for(int i=1;i<11;i++){
+                lower[i]=lower[i-1]+lower[i];
+            }
+            
+            boolean flag=true;
+            dp[0]=0;
+            int d2;
+            for(int i=1;i<=B;i++){
+                
+                d2=lower[digit.get(i-1)];
+                dp[i]=dp[i-1]*d;
+                
+                if(i==1 && A.get(0)==0 && B!=1){
+                    d2=d2-1;
+                }
+                if(flag){
+                    dp[i]+=d2;
+                }
+                
+                flag=(flag & lower[digit.get(i-1)+1] == (lower[digit.get(i-1)]+1));
+                
+            }
+            return dp[B];
+            
+        }
+
+        
+    }
+}
