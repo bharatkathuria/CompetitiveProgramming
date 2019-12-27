@@ -1,0 +1,32 @@
+class GfG{
+    
+    public static Tree copyLR(Tree t,HashMap<Tree,Tree> map){
+        if(t==null){
+            return t;
+        }
+        Tree temp = new Tree(t.data);
+        map.put(t,temp);
+        temp.left = copyLR(t.left,map);
+        temp.right= copyLR(t.right,map);
+        return temp;
+    }
+    public static void copyRandomPointers(Tree t,Tree clone,HashMap<Tree,Tree> map){
+        if(clone==null){
+            return;
+        }
+        clone.random = map.get(t.random);
+        copyRandomPointers(t.left,clone.left,map);
+        copyRandomPointers(t.right,clone.right,map);
+    }
+    
+    public static Tree cloneTree(Tree tree){
+                
+                if(tree==null){
+                    return tree;
+                }
+            HashMap<Tree,Tree> map = new HashMap<>();
+              Tree t = copyLR(tree,map);
+              copyRandomPointers(tree,t,map);
+              return t;
+     }
+}
