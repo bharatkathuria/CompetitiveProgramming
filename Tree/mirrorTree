@@ -1,0 +1,14 @@
+class Tree
+{
+    void mirror(Node node)
+    {
+        if(node==null){
+            return;
+        }
+        Node t = node.left;
+        node.left=node.right;
+        node.right=t;
+        mirror(node.left);
+        mirror(node.right);
+    }
+}
