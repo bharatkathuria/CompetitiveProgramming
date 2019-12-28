@@ -1,0 +1,14 @@
+  Node temp = root;
+        Stack<Node> st = new Stack<>();
+        while(!st.isEmpty() || temp!=null){
+            
+            if(temp!=null){
+                st.push(temp);
+                temp=temp.left;
+            }
+            else{
+                temp=st.pop();   
+                System.out.print(temp.data+" ");
+                temp=temp.right;
+            }
+        }
