@@ -1,0 +1,35 @@
+class GfG
+{
+    public static int maxNodeLevel(Node node)
+    {
+        if(node==null){
+            return 0;
+        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(node);
+        int l=0;
+        int rl=0;
+        int maxc=0;
+        while(!q.isEmpty()){
+            int c=q.size();
+            if(c>maxc){
+                maxc=c;
+                rl=l;
+            }
+            while(c-->0){
+            Node temp = q.remove();
+            if(temp.left!=null){
+                q.add(temp.left);
+            }
+            if(temp.right!=null){
+                q.add(temp.right);
+            }
+            }            
+            l++;
+            
+            
+            
+        }
+        return rl;
+    }
+}
