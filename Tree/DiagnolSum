@@ -1,0 +1,29 @@
+//slope -1
+
+
+class GfG {
+    int[] arr = new int[101];
+
+    public void preorder(Node root,int dist){
+        
+        if(root==null){
+            return;
+        }
+        arr[dist]+=root.data;
+        preorder(root.left,dist+1);
+        preorder(root.right,dist);
+    }
+    public void diagonalsum(Node root) {
+        
+       preorder(root,0);
+       for(int i=0;i<arr.length;i++){
+           if(arr[i]==0){
+               break;
+           }
+           else{
+               System.out.print(arr[i]+" ");
+           }
+       }
+        
+    }
+}
