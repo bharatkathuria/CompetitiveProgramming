@@ -1,0 +1,29 @@
+class GfG
+{       int sum=0;
+    	public void getSum(Tree root,int val){
+    	    if(root==null){
+    	        return;
+    	    }
+    	    if(root.left==null && root.right==null){
+    	        val=val+root.data;
+    	        sum+= val;
+    
+    	        return;
+    	    }
+    	    else{
+    	        getSum(root.left,(root.data+val)*10);
+    	        getSum(root.right,(root.data+val)*10);
+    	    }
+    	}
+
+	public  int treePathsSum(Tree root)
+        {
+            if(root==null){
+                return 0;
+                
+            }
+            
+            getSum(root,0);
+            return sum;
+	}
+}
