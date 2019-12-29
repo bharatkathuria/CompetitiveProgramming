@@ -1,0 +1,38 @@
+class GfG
+{       
+    
+     // Recursive function to print right view of a binary tree.
+     void printKdistance(Node root, int k)
+     {
+         if(root==null || k<0){
+             return;
+         }
+         if(k==0){
+             System.out.print(root.data+" ");
+         }
+         else{
+             printKdistance(root.left,k-1);
+             printKdistance(root.right,k-1);
+         }
+        //  Queue<Node> q = new LinkedList<>();
+        //  q.add(root);
+        //  int l=0;
+        //  while(!q.isEmpty()){
+        //      int c = q.size();
+        //      while(c-->0){
+        //          Node temp = q.remove();
+        //          if(l==k){
+        //           System.out.print(temp.data+" ");   
+        //          }
+        //          if(temp.left!=null){
+        //              q.add(temp.left);
+        //          }
+        //          if(temp.right!=null){
+        //              q.add(temp.right);
+        //          }
+        //      }
+        //      l++;
+        //  }
+          
+     }
+}
