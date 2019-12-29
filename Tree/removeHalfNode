@@ -1,0 +1,23 @@
+//remove nodes with single children
+
+class GfG
+{
+    public Node removeHalfNodes(Node root)
+    {
+        
+       if(root.left!=null && root.right==null){
+           return removeHalfNodes(root.left);
+           
+       }
+       else if(root.left==null && root.right!=null){
+           return removeHalfNodes(root.right);
+       }
+       if(root.left!=null){
+           root.left = removeHalfNodes(root.left);
+       }
+       if(root.right!=null){
+           root.right = removeHalfNodes(root.right);
+       }
+       return root;
+    }
+}
