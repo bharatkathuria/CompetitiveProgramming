@@ -1,0 +1,28 @@
+class GfG {
+    
+    
+    public static void processVertical(Node root,TreeMap<Integer,Integer> map,int vd){
+        
+        if(root==null){
+            return;
+        }
+        processVertical(root.left,map,vd-1);
+        if(map.containsKey(vd)){
+            int sum= map.get(vd)+root.data;
+            map.put(vd,sum);
+        }
+        else{
+            map.put(vd,root.data);
+        }
+        processVertical(root.right,map,vd+1);
+    }
+    
+    public static void printVertical(Node root) {
+        
+        TreeMap<Integer,Integer> map = new TreeMap<>();
+        processVertical(root,map,0);
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            System.out.print(entry.getValue()+" ");
+        }
+    }
+}
