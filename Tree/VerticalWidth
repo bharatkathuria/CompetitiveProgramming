@@ -30,3 +30,30 @@ class Tree
         return hvd-lvd-1;
 	}
 }
+
+//using hash set............
+// Function should return vertical width of the binary tree.
+class Tree
+{   
+    HashSet<Integer> hset;
+    public void getVd(Node root,int vd){
+        if(root==null){
+            return;
+        }
+        getVd(root.left,vd-1);
+        hset.add(vd);
+        getVd(root.right,vd+1);
+        
+        
+    }
+    
+    public int verticalWidth(Node root)
+	{
+	    if(root==null){
+	        return 0;
+	    }
+	    hset = new HashSet<Integer>();
+	   getVd(root,0);
+        return hset.size();
+	}
+}
