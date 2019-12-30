@@ -1,0 +1,32 @@
+// Function should return vertical width of the binary tree.
+class Tree
+{   
+    int hvd=0;
+    int lvd=0;
+    public void getVd(Node root,int vd){
+        if(root==null){
+            if(hvd<vd){
+                hvd=vd;
+                
+            }
+            if(lvd>vd){
+                lvd=vd;
+            }
+            return;
+        }
+        getVd(root.left,vd-1);
+        getVd(root.right,vd+1);
+        
+        
+    }
+    
+    public int verticalWidth(Node root)
+	{
+	    if(root==null){
+	        return 0;
+	    }
+	   getVd(root,0);
+	//   System.out.println(hvd+" "+lvd);
+        return hvd-lvd-1;
+	}
+}
