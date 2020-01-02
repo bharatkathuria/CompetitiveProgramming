@@ -1,0 +1,29 @@
+
+//all numbers are 0-9
+class Solution {
+    int total = 0;
+    
+    public void leafSums(TreeNode root,int temp){
+        if(root==null){
+            return;
+        }     
+        if(root.left==null && root.right==null){
+            temp=temp*10+root.val;
+            total+=temp;
+            return;
+        }
+        leafSums(root.left,temp*10+root.val);
+        leafSums(root.right,temp*10+root.val);
+        
+    }
+    
+    
+    public int sumNumbers(TreeNode root) {
+        
+        if(root==null){
+            return 0;
+        }
+        leafSums(root,0);
+        return total;
+    }
+}
