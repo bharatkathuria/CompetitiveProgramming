@@ -1,36 +1,55 @@
 
 
-//using queue
+//using queue and recursion both
 class Solution {
+    int maxLevel=Integer.MIN_VALUE;
+    
+    public void rightView(TreeNode root,List<Integer> l,int level){
+        
+        if(root==null){
+            return;
+        }
+        if(maxLevel<level){
+            l.add(root.val);
+            maxLevel=level;
+        }
+        
+        rightView(root.right,l,level+1);
+        rightView(root.left,l,level+1);        
+    }
+    
     public List<Integer> rightSideView(TreeNode root) {
         
         List<Integer> a = new ArrayList<>();
         if(root==null){
             return a;
         }
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()){
-            int c = q.size();
-            
-            while(c>0){
-                TreeNode temp = q.remove();    
-                if(temp.left!=null){
-                    q.add(temp.left);
-                }
-                if(temp.right!=null){
-                    
-                    q.add(temp.right);
-                }
-                if(c==1){
-                    a.add(temp.val);
-                }
-                c--;
-            }
-        }
-        
-        
+        rightView(root,a,1);
         return a;
+        
+//         Queue<TreeNode> q = new LinkedList<>();
+//         q.add(root);
+//         while(!q.isEmpty()){
+//             int c = q.size();
+            
+//             while(c>0){
+//                 TreeNode temp = q.remove();    
+//                 if(temp.left!=null){
+//                     q.add(temp.left);
+//                 }
+//                 if(temp.right!=null){
+                    
+//                     q.add(temp.right);
+//                 }
+//                 if(c==1){
+//                     a.add(temp.val);
+//                 }
+//                 c--;
+//             }
+//         }
+        
+        
+//         return a;
         
     }
 }
