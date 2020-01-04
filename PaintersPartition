@@ -1,0 +1,46 @@
+public class Solution {
+    
+    public int getPainters(long time,ArrayList<Integer> C){
+        int painters=1;
+        long timeTaken =0;
+        for(int i:C){
+            timeTaken+=i;
+            if(timeTaken>time){
+                painters++;
+                timeTaken =i;
+            }
+        }
+        return painters;
+    }
+    
+    
+    public long sum(ArrayList<Integer> C){
+        long total=0;
+        for(int i:C){
+            total+=i;
+        }
+        return total;
+    }
+    
+    
+    
+    public int paint(int A, int B, ArrayList<Integer> C) {
+    
+    long  l = Collections.max(C);
+    long h = sum(C);
+    long ans=0;
+    while(l<=h){
+        long mid = (l+h)/2;
+        
+        if(getPainters(mid,C)<=A){
+            ans=mid;
+            h=mid-1;
+        }else{
+            l=mid+1;
+        }
+    }
+    
+    return (int)((ans*(long)B)%10000003);
+        
+    }
+}
