@@ -1,0 +1,60 @@
+//merge like procedure but not efficient..............
+
+public class Solution {
+    // DO NOT MODIFY BOTH THE LISTS
+    public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
+
+    int m = a.size();
+    int n = b.size();
+    
+    int i=0;
+    int j=0;
+    int k=0;
+    double m1=-1;
+    double m2=-1;
+    
+    if((m+n)%2==1){
+        
+        for(k=0;k<=(m+n)/2;k++){
+            
+            if(i<m && j<n){
+                
+                m1 = a.get(i)<b.get(j)?a.get(i++):b.get(j++);
+                
+            }
+            else if(i<m){
+                m1 = a.get(i++);
+                
+            }
+            else{
+                m1=b.get(j++);
+            }
+            
+        }
+        return m1;
+    }
+    else{
+        
+         for(k=0;k<=(m+n)/2;k++){
+            m2=m1;   
+            if(i<m && j<n){
+                
+                m1 = a.get(i)<b.get(j)?a.get(i++):b.get(j++);
+                
+            }
+            else if(i<m){
+                m1 = a.get(i++);
+                
+            }
+            else{
+                m1=b.get(j++);
+            }
+            
+        }
+        return (m1+m2)/2;
+    }
+    
+
+
+    }
+}
