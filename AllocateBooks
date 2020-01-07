@@ -1,0 +1,47 @@
+public class Solution {
+ //same concept as painters partition problem ....
+    public int getStudents(int pages,ArrayList<Integer> C){
+        int students=1;
+        int pageSum =0;
+        for(int i:C){
+            pageSum+=i;
+            if(pageSum>pages){
+                students++;
+                pageSum =i;
+            }
+        }
+        return students;
+    }
+    
+    public int sum(ArrayList<Integer> C){
+        int total=0;
+        for(int i:C){
+            total+=i;
+        }
+        return total;
+    }
+    
+    
+    public int books(ArrayList<Integer> A, int B) {
+        
+    int   l = Collections.max(A);
+    int h = sum(A);
+    int n = A.size();
+    if(B>n){
+        return -1;
+    }
+    int  ans=-1;
+    while(l<=h){
+        int mid = (l+h)/2;
+        if(getStudents(mid,A)<=B){
+            ans=mid;
+            h=mid-1;
+        }else{
+            l=mid+1;
+        }
+    }
+    return ans;
+    }
+        
+
+}
