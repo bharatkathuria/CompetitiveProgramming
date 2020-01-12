@@ -1,0 +1,73 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+
+
+
+
+
+class GFG {
+
+    static Deque<Integer> dq;
+    static HashSet<Integer> hset;
+    
+    static int cSize;
+
+    GFG(int n){
+        dq = new LinkedList<>();
+        hset = new HashSet<>();
+        cSize = n;
+    }
+    
+    public void referCache(int page){
+        
+        if(!hset.contains(page)){
+            if(dq.size()==cSize){
+                int last = dq.removeLast();
+                hset.remove(last);
+            }
+        }
+        else{
+            
+            int index = 0;
+            int i=0;
+            Iterator<Integer> itr = dq.iterator();
+            while(itr.hasNext()){
+                
+                if(itr.next()==page){
+                    index = i; 
+                    break;
+                }
+                i++;
+            }
+            
+            dq.remove(index);
+        }
+        dq.push(page);
+        hset.add(page);
+    }
+
+ public void display() 
+    { 
+        Iterator<Integer> itr = dq.iterator(); 
+        while (itr.hasNext()) { 
+            System.out.print(itr.next() + " "); 
+        } 
+    } 
+    
+	public static void main (String[] args) {
+
+        GFG ca = new GFG(4); 
+        ca.referCache(1); 
+        ca.referCache(2); 
+        ca.referCache(3); 
+        ca.referCache(1); 
+        ca.referCache(4); 
+        ca.referCache(5); 
+        ca.display(); 
+
+
+	}
+}
